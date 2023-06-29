@@ -1,8 +1,8 @@
-# sparda - a sparse dataframe-like data structure
+# Sparda - a sparse dataframe-like data structure
 
 (Not to be confused with the other [Sparda](https://devilmaycry.fandom.com/wiki/Sparda)).
 
-sparda is a module that defines SparseDataFrame (shortened to sdf), a data structure for working with sparse and big data. SparseDataFrame allows working with a large amount (in samples and/or features) of sparse data in a convenient way by defining methods for managing and filtering data with optional index identifiers and/or column names, much like a pandas dataframe. In addition, sample labels can be provided which enable functionalities such as stratified train/test splitting. Data is stored in a [scipy.sparse](https://docs.scipy.org/doc/scipy/reference/sparse.html) matrix as the backend. 
+Sparda is a module that defines SparseDataFrame (shortened to sdf), a data structure for working with sparse and big data. SparseDataFrame allows working with a large amount (in samples and/or features) of sparse data in a convenient way by defining methods for managing and filtering data with optional index identifiers and/or column names, much like a pandas dataframe. In addition, sample labels can be provided which enable functionalities such as stratified train/test splitting. Data is stored in a [scipy.sparse](https://docs.scipy.org/doc/scipy/reference/sparse.html) matrix as the backend. 
 
 ## Installation
 

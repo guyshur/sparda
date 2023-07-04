@@ -369,33 +369,33 @@ class SparseDataFrame(object):
 	
 	def _validate_compatiblity(self, other: SparseDataFrame, vertical=True):
 		if not isinstance(other, SparseDataFrame):
-			raise TypeError('other must be a SparseDataFrame')
+			raise TypeError('other must be a SparseDataFrame.')
 		if vertical:
 			if not self.matrix.shape[1] == other.matrix.shape[1]:
-				raise ValueError('other must have the same number of columns as self')
+				raise ValueError('other must have the same number of columns as self.')
 		else:
 			if not self.matrix.shape[0] == other.matrix.shape[0]:
-				raise ValueError('other must have the same number of rows as self')
+				raise ValueError('other must have the same number of rows as self.')
 		if (self.column_names is not None and other.column_names is None) or (self.column_names is None and other.column_names is not None):
-			raise ValueError('either both or neither of self and other must have column names')
+			raise ValueError('either both or neither of self and other must have column names.')
 		if (self.labels is not None and other.labels is None) or (self.labels is None and other.labels is not None):
-			raise ValueError('either both or neither of self and other must have labels')
+			raise ValueError('either both or neither of self and other must have labels.')
 		if (self.index_ids is not None and other.index_ids is None) or (self.index_ids is None and other.index_ids is not None):
-			raise ValueError('either both or neither of self and other must have index ids')
+			raise ValueError('either both or neither of self and other must have index ids.')
 		if not self.dtype == other.dtype:
-			raise ValueError('other must have the same dtype as self')
+			raise ValueError('other must have the same dtype as self.')
 		if vertical:
 			if self.index_ids is not None and other.index_ids is not None and not set(self.index_ids).isdisjoint(set(other.index_ids)):
-				raise ValueError('other must have different index ids than self')
+				raise ValueError('other must have different index ids than self.')
 			if self.column_names is not None and other.column_names is not None and not all(self.column_names == other.column_names):
-				raise ValueError('other must have the same column names as self')
+				raise ValueError('other must have the same column names as self.')
 		else:
 			if not set(self.column_names).isdisjoint(set(other.column_names)):
-				raise ValueError('other must have different column names than self')
+				raise ValueError('other must have different column names than self.')
 			if self.index_ids is not None and other.index_ids is not None and (not all(self.index_ids == other.index_ids)):
-				raise ValueError('other must have the same index ids as self')
+				raise ValueError('other must have the same index ids as self.')
 			if self.labels is not None and other.labels is not None and not all(self.labels == other.labels):
-				raise ValueError('other must have the same index ids as self')
+				raise ValueError('other must have the same sample labels as self.')
 			
 	def concat_vertically(self, other: SparseDataFrame):
 		"""

@@ -18,11 +18,10 @@ There are currently three ways to create a SparseDataFrame:
  - With a sparse dict of the shape:  
 >{(sample_1,feature_1): value, (sample_1,feature_2): value, (sample_2,feature_2): value, (sample_2,feature_3): value, ...}
 >
-and label dict of the shape:  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;and label dict of the shape:
 > {sample_1: label_1, sample_2: label_2, sample_3: label_1, ... }
->
-  
- `sdf = sparda.from_sparse_dict(sparse_dict, label_dict)`
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`sdf = sparda.from_sparse_dict(sparse_dict, label_dict)`
 ### Updating a SparseDataFrame
 Updating a SparseDataFrame can be done by calling the `update` method with a sparse dict of the shape similar to the one above, using the number of the row and column in the dictionary tuple keys instead of the row and column names. To use row and column names instead, use with `use_row_col_names` set to True. Note that to add new samples or features, use the 'concat_vertically' and 'concat_horizontally' methods respectively. 
 ### Data cleaning and sampling
@@ -38,16 +37,22 @@ negative sampling:
 Note that `get_stratified_train_test_split` will fail if any sample has a unique label, in which case these samples must be filtered:
 `sdf = sdf.drop_singleton_labels()`
 One may choose, when not every label is important or during early development, to filter all samples with labels below a certain count:
-`sdf = sdf.drop_low_frequency_labels(min_counts)
+`sdf = sdf.drop_low_frequency_labels(min_counts)`
 
 ### Custom masks
 Selecting specific samples by index/label and columns by name can be done by creating a boolean iterable, conditioning on sdf.index_ids, sdf.labels or sdf.column_names:
+
+By index:
+
     idx_mask = [True if sample_id.startswith('batch1') else False for sample_id in sdf.index_ids]
     batch1_sdf = sdf._keep_indices(mask)
-    # house_keeping_genes = set(...)
+By column:
+
+    house_keeping_genes = set(['gene_2', 'gene_3', 'gene_5'])
     col_mask = [True if column_name in house_keeping_genes else False for column_name in batch1_sdf.column_names]
     batch1_hkg_sdf = batch1_sdf._keep_columns(mask)
 Both:
+
     batch1_hkg_sdf = sdf._keep_indices_and_columns(idx_mask, col_mask)
 ### Machine learning usage
 Many scikit-learn algorithms can work with scipy.sparse matrices directly:

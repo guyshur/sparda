@@ -83,5 +83,5 @@ Tensors:
 
 Getting a sparse tensorflow tensor:
 `tensor = sdf.to_tensorflow()`
-Getting a spasre pytorch tensor:
+Getting a sparse pytorch tensor:
 `tensor = sdf.to_torch()`
